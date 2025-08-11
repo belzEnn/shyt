@@ -16,14 +16,6 @@ class General(commands.Cog):
         if random.random() < REACTION_CHANCE:
             random_emoji = random.choice(EMOJI_LIST)
             await message.add_reaction(random_emoji)
-        if not message.content.startswith(self.bot.command_prefix):
-            self.message_counter += 1
-        if self.bot.user in message.mentions:
-            embed = discord.Embed(
-                description=(f"### {self.bot.user.mention}\nПрефикс бота: **!**\nДля просмотра команд бота используйте `!хелп`."),
-                color=10027247
-            )
-            await message.channel.send(embed=embed)
         if self.message_counter % 10 == 0 and self.message_counter > 0:
             print(f"[{self.message_counter} сообщений] Отправляю случайный мем...")
             await send_random_meme_to_channel(self.bot, message.channel)
